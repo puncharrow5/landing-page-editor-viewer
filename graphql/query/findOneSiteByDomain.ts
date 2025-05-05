@@ -1,0 +1,214 @@
+import { gql } from "@apollo/client";
+
+export const FIND_ONE_SITE_BY_DOMAIN = gql`
+  query Query($domain: String!) {
+    findOneSiteByDomain(domain: $domain) {
+      id
+      domain
+      name
+      email
+      components {
+        children {
+          id
+          title
+          content
+          isDelete
+          componentId
+          childStyle {
+            id
+            width
+            height
+            margin
+            padding
+            background
+            backgroundType
+            border
+            borderRadius
+            titleSize
+            titleColor
+            titleLineHeight
+            titleMargin
+            contentSize
+            contentColor
+            contentLineHeight
+            contentMargin
+            childId
+          }
+        }
+        componentMobileStyle {
+          id
+          height
+          padding
+          grid
+          gap
+          background
+          backgroundType
+          componentId
+        }
+        componentStyle {
+          id
+          height
+          padding
+          grid
+          gap
+          background
+          backgroundType
+          componentId
+        }
+        componentType
+        content
+        contentStyle {
+          id
+          margin
+          mobileMargin
+          size
+          mobileSize
+          lineHeight
+          mobileLineHeight
+          color
+          mobileColor
+          componentId
+        }
+        id
+        inquiryStyle {
+          id
+          padding
+          gap
+          textSize
+          textColor
+          lineHeight
+          backgroundColor
+          buttonWidth
+          buttonHeight
+          buttonTextSize
+          buttonTextColor
+          buttonColor
+          buttonRadius
+          componentId
+        }
+        isDelete
+        mobileChildren {
+          id
+          title
+          content
+          isDelete
+          componentId
+          mobileChildStyle {
+            id
+            width
+            height
+            margin
+            padding
+            background
+            backgroundType
+            border
+            borderRadius
+            titleSize
+            titleColor
+            titleLineHeight
+            titleMargin
+            contentSize
+            contentColor
+            contentLineHeight
+            contentMargin
+            mobileChildId
+          }
+        }
+        mobileContent
+        mobileInquiryStyle {
+          id
+          padding
+          gap
+          textSize
+          textColor
+          lineHeight
+          backgroundColor
+          buttonWidth
+          buttonHeight
+          buttonTextSize
+          buttonTextColor
+          buttonColor
+          buttonRadius
+          componentId
+        }
+        mobileTitle
+        name
+        siteId
+        title
+        titleStyle {
+          id
+          margin
+          mobileMargin
+          size
+          mobileSize
+          lineHeight
+          mobileLineHeight
+          color
+          mobileColor
+          componentId
+        }
+      }
+      header {
+        id
+        logo
+        logoSize
+        height
+        padding
+        gap
+        backgroundColor
+        textSize
+        textColor
+        siteId
+      }
+      mobileHeader {
+        id
+        logo
+        logoSize
+        button
+        buttonSize
+        height
+        padding
+        menuPadding
+        backgroundColor
+        menuBackgroundColor
+        textSize
+        textColor
+        siteId
+      }
+      footer {
+        id
+        footerType
+        logo
+        logoSize
+        contentTop
+        helpCenter
+        terms
+        contentBottom
+        backgroundColor
+        paddingTop
+        paddingBottom
+        textSize
+        textColor
+        lineHeight
+        siteId
+      }
+      mobileFooter {
+        id
+        footerType
+        logo
+        logoSize
+        contentTop
+        helpCenter
+        terms
+        contentBottom
+        backgroundColor
+        paddingTop
+        paddingBottom
+        textSize
+        textColor
+        lineHeight
+        siteId
+      }
+    }
+  }
+`;
