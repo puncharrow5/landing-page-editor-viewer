@@ -20,7 +20,7 @@ export const MobileBackdrop = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 375px;
+  width: 100%;
   height: 100vh;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);

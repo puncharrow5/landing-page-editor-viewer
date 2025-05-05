@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: fixed;
   display: flex;
-  width: 375px;
+  width: 100%;
   top: 0;
   z-index: 1;
   transform-origin: top center;
@@ -31,7 +31,7 @@ export const Backdrop = styled.div`
   display: flex;
   position: fixed;
   justify-content: center;
-  width: 375px;
+  width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 `;
@@ -45,7 +45,7 @@ export const Menu = styled.div<{
   position: fixed;
   display: flex;
   flex-direction: column;
-  width: 375px;
+  width: 100%;
   top: ${({ $top }) => ($top ? $top : "80px")};
   font-size: ${({ $textSize }) => ($textSize ? $textSize : "10px")};
   color: ${({ $textColor }) => $textColor ?? "#000"};

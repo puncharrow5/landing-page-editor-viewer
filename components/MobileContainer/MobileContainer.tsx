@@ -60,20 +60,6 @@ export const MobileContainer = ({ data }: Props) => {
 
   return (
     <S.Background>
-      {/* <S.ZoomButton>
-        <div
-          onClick={handleZoomButton}
-          className="flex justify-center items-center p-[5px] bg-white rounded-full cursor-pointer"
-        >
-          <MagnifyingGlassPlusIcon className="size-[50px]" />
-        </div>
-
-        <div className="flex justify-center items-center w-[74px] mt-[10px] p-[2px] bg-white rounded-lg leading-1 select-none">
-          <XMarkIcon className="size-[20px] mt-[4px]" />
-          <p className="text-[20px] font-bold">{zoom}</p>
-        </div>
-      </S.ZoomButton> */}
-
       <MobileHeader sectionNames={sectionNames} data={data.mobileHeader ?? undefined} />
 
       {data.mobileFooter?.terms && openTerms && (
