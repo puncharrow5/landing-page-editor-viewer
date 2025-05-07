@@ -1,5 +1,6 @@
 # 랜딩페이지 에디터 VIEWER README
 
+![Image](https://github.com/user-attachments/assets/68865ab7-3777-417d-b513-69054ebd23f7)
 
 ## 프로젝트 소개
 
@@ -9,6 +10,14 @@
 - 이를 위해 SDUI(Server Driven UI) 기반 구조를 도입하여, 서버에서 UI를 동적으로 제어하고 빌드 및 배포 없이도 UI를 유연하게 업데이트할 수 있도록 구현했습니다.
 - 전체 구조는 랜딩페이지 에디터에서 UI를 생성/수정하고, 그 정보가 백엔드에 저장된 뒤, 랜딩페이지 뷰어에서 해당 UI 정보를 기반으로 렌더링되는 방식으로 설계했습니다.
 - 실제 운영 시에는 랜딩페이지 뷰어를 도메인만 다르게 설정하여 재배포 없이 여러 개의 랜딩페이지를 운영할 수 있습니다. 예를 들어, 5개의 랜딩페이지를 운영할 경우 뷰어는 하나만 배포하고, 도메인 값에 따라 백엔드에서 해당 도메인과 매칭되는 UI 정보를 전달받아 렌더링합니다.
+
+<br>
+
+## 프로젝트 구성
+
+- <a href="https://github.com/puncharrow5/landing-page-editor-frontend" target="_blank">프론트엔드<a/> : 랜딩페이지 에디터 클라이언트
+- <a href="https://github.com/puncharrow5/landing-page-editor-server" target="_blank">백엔드</a> : 인증, 데이터 저장, 이메일 전송 등 API 처리
+- <a href="https://github.com/puncharrow5/landing-page-editor-viewer" target="_blank">웹뷰어</a> : 랜딩페이지 에디터의 결과물을 출력하는 클라이언트
 
 <br>
 
@@ -50,3 +59,72 @@
 <br>
 
 ## 주요 기능
+
+### [데스크탑]
+- 데스크탑 환경에서의 화면 모습입니다.
+- 헤더에 표시된 섹션 이름을 클릭하면 해당 섹션으로 스크롤 이동합니다.
+- 에디터에서 UI를 수정하면 변경 사항이 즉시 반영됩니다.
+
+| 데스크탑 |
+|----------|
+![Image](https://github.com/user-attachments/assets/8be89aaa-9db2-4df2-9100-d1fac923032a)
+
+<br>
+
+### [모바일]
+- 모바일 환경에서의 화면입니다.
+- 헤더의 버튼을 누르면 메뉴가 열리고, 항목을 터치하면 해당 섹션으로 스크롤 이동합니다.
+- 에디터에서 UI를 수정하면 모바일 화면에도 변경 사항이 실시간으로 반영됩니다.
+
+| 모바일 |
+|----------|
+![Image](https://github.com/user-attachments/assets/d88ec5d9-23bd-4461-8695-721954149ee2)
+
+### [문의]
+- 문의 이메일을 전송할 수 있는 기능입니다.
+- 유효성 검사
+    - 회원가입과 마찬가지로 프론트엔드와 백엔드에서 모두 유효성 검사를 수행합니다.
+    - 타입 체크 및 정규표현식을 활용하여 입력값을 검증합니다.
+- 유효성 검사를 통과하면 백엔드에서 nodemailer를 통해 이메일이 전송됩니다.
+
+| 문의 |
+|----------|
+![Image](https://github.com/user-attachments/assets/c3b88dae-110b-4441-bbc3-9c416dd7b0d7)
+
+| 수신된 문의 메일 |
+|----------|
+![Image](https://github.com/user-attachments/assets/8b733997-e2fc-46ad-928f-e609624899f5)
+
+<br>
+
+### [약관]
+- 푸터의 약관 링크를 클릭하면, 에디터에서 작성한 약관 내용을 확인할 수 있습니다.
+- 약관은 모달 형식으로 표시됩니다.
+
+| 약관 |
+|----------|
+![Image](https://github.com/user-attachments/assets/c476f7ea-3b88-49da-b6e0-15d6e73f29e4)
+
+<br>
+
+## 고도화 계획
+- 캐러셀, 비디오 등 다양한 유형의 섹션 추가
+- 회원 목록 조회 및 권한 변경 등 회원 관리 기능 강화
+- 더 직관적이고 사용자 친화적인 UI 편집 기능 제공
+
+<br>
+
+## 관련 프로젝트
+<a href="https://github.com/puncharrow5/landing-page-editor-frontend" target="_blank">랜딩페이지 프론트엔드 리포지토리</a> 
+<br/>
+<a href="https://github.com/puncharrow5/landing-page-editor-backend" target="_blank">랜딩페이지 백엔드 리포지토리</a>
+
+<br>
+
+## CONTACT
+<a href="mailto:seunghyeon9696@gmail.com">![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)</a>
+<a href="https://github.com/puncharrow5" target="_blank">![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)</a>
+<a href="https://geode-divan-811.notion.site/a44da1efdf5b47ea8fe12a8f85b216ad" target="_blank">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)</a>
+<a href="https://www.linkedin.com/in/oh-seunghyeon-352708307" target="_blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a>
+
+<br/>
