@@ -117,7 +117,7 @@
 ## 관련 프로젝트
 <a href="https://github.com/puncharrow5/landing-page-editor-frontend" target="_blank">랜딩페이지 프론트엔드 리포지토리</a> 
 <br/>
-<a href="https://github.com/puncharrow5/landing-page-editor-backend" target="_blank">랜딩페이지 백엔드 리포지토리</a>
+<a href="https://github.com/puncharrow5/landing-page-editor-server" target="_blank">랜딩페이지 백엔드 리포지토리</a>
 
 <br>
 
