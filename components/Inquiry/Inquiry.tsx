@@ -1,27 +1,58 @@
 "use client";
 
 import React, { useState } from "react";
-import { BackgroundType, ComponentEntity } from "@/graphql/generated/types";
+import {
+  BackgroundType,
+  ComponentEntity,
+  useSendInquiryEmailMutation,
+} from "@/graphql/generated/types";
+import { useToastMessage } from "@/hooks";
+import { BeatLoader } from "react-spinners";
 import * as S from "./Inquiry.style";
 
 interface Props {
   id: string;
   data: ComponentEntity;
-  siteEmail: string;
+  siteId: number;
 }
 
-export const Inquiry = ({ id, data, siteEmail }: Props) => {
+export const Inquiry = ({ id, siteId, data }: Props) => {
+  const { ToastMessage } = useToastMessage();
+
   const [emailForm, setEmailForm] = useState({
-    email: "",
+    userEmail: "",
     phoneNumber: "",
     content: "",
-    siteEmail,
+  });
+
+  const [loadSendInquiryEmail, { loading }] = useSendInquiryEmailMutation({
+    onCompleted: () => {
+      setEmailForm({
+        userEmail: "",
+        phoneNumber: "",
+        content: "",
+      });
+
+      ToastMessage("info", "문의 메일이 전송되었습니다.");
+    },
+    onError: (e) => {
+      ToastMessage("error", `${e.message ?? e}`);
+    },
   });
 
   const handleChange = (key: string) => (e: any) => {
     setEmailForm({
       ...emailForm,
-      [key]: key === "phoneNumber" ? e.target.value.replace(/\D/g, "") : e.target.value,
+      [key]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    loadSendInquiryEmail({
+      variables: {
+        id: siteId,
+        ...emailForm,
+      },
     });
   };
 
@@ -54,8 +85,8 @@ export const Inquiry = ({ id, data, siteEmail }: Props) => {
         <S.Form $inquiryStyle={data.inquiryStyle ?? undefined}>
           <label className="">이메일</label>
           <input
-            value={emailForm.email}
-            onChange={handleChange("email")}
+            value={emailForm.userEmail}
+            onChange={handleChange("userEmail")}
             placeholder="abc@gmail.com"
             className="p-3 border rounded-md"
           />
@@ -64,7 +95,7 @@ export const Inquiry = ({ id, data, siteEmail }: Props) => {
           <input
             value={emailForm.phoneNumber}
             onChange={handleChange("phoneNumber")}
-            placeholder="01012341234"
+            placeholder="010-1234-1234"
             className="p-3 border rounded-md"
           />
 
@@ -76,7 +107,17 @@ export const Inquiry = ({ id, data, siteEmail }: Props) => {
             className="h-[200px] p-3 border rounded-md resize-none"
           />
 
-          <S.Button $inquiryStyle={data.inquiryStyle ?? undefined}>문의하기</S.Button>
+          <S.Button
+            onClick={handleSubmit}
+            disabled={loading}
+            $inquiryStyle={data.inquiryStyle ?? undefined}
+          >
+            {loading ? (
+              <BeatLoader size={10} speedMultiplier={0.75} color="#FFF" />
+            ) : (
+              <p>문의하기</p>
+            )}
+          </S.Button>
         </S.Form>
       </S.InquiryBox>
     </S.Container>

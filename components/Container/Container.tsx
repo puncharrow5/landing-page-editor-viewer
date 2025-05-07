@@ -62,7 +62,7 @@ export const Container = ({ data }: Props) => {
       {sections.map((value: ComponentEntity, index: number) => (
         <Section key={index} id={value.name} data={value} />
       ))}
-      {inquiry && <Inquiry id={inquiry.name} data={inquiry} siteEmail={data.email} />}
+      {inquiry && <Inquiry id={inquiry.name} data={inquiry} siteId={data.id} />}
       <Footer data={data.footer ?? undefined} handleOpenTerms={handleOpenTerms} />
     </S.Container>
   );

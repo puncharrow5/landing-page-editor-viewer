@@ -651,6 +651,8 @@ export type MobileInquiryStyleInput = {
 };
 
 export type Mutation = {
+  /** 문의 이메일 발송 */
+  SendInquiryEmail: Scalars['Boolean']['output'];
   /** 사이트 연결 */
   connectSite: Scalars['Boolean']['output'];
   /** 회원가입 */
@@ -701,6 +703,14 @@ export type Mutation = {
   uploadImage: Scalars['String']['output'];
   /** 이메일 인증 */
   verifyEmail: Scalars['Boolean']['output'];
+};
+
+
+export type MutationSendInquiryEmailArgs = {
+  content: Scalars['String']['input'];
+  id: Scalars['Int']['input'];
+  phoneNumber: Scalars['String']['input'];
+  userEmail: Scalars['String']['input'];
 };
 
 
@@ -836,7 +846,6 @@ export type MutationUpdateHeaderArgs = {
 
 export type MutationUpdateMobileChildArgs = {
   content?: InputMaybe<Scalars['String']['input']>;
-  file?: InputMaybe<Scalars['Upload']['input']>;
   id: Scalars['Int']['input'];
   mobileChildStyle?: InputMaybe<MobileChildStyleInput>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -996,16 +1005,65 @@ export type TitleStyleInput = {
   size?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type QueryQueryVariables = Exact<{
+export type SendInquiryEmailMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  userEmail: Scalars['String']['input'];
+  phoneNumber: Scalars['String']['input'];
+  content: Scalars['String']['input'];
+}>;
+
+
+export type SendInquiryEmailMutation = { SendInquiryEmail: boolean };
+
+export type FindOneSiteByDomainQueryVariables = Exact<{
   domain: Scalars['String']['input'];
 }>;
 
 
-export type QueryQuery = { findOneSiteByDomain: { id: number, domain: string, name: string, email: string, components?: Array<{ componentType: ComponentType, content?: string | null, id: number, isDelete: boolean, mobileContent?: string | null, mobileTitle?: string | null, name: string, siteId: number, title?: string | null, children?: Array<{ id: number, title?: string | null, content?: string | null, isDelete: boolean, componentId: number, childStyle?: { id: number, width?: string | null, height?: string | null, margin?: string | null, padding?: string | null, background?: string | null, backgroundType?: BackgroundType | null, border?: string | null, borderRadius?: string | null, titleSize?: string | null, titleColor?: string | null, titleLineHeight?: number | null, titleMargin?: string | null, contentSize?: string | null, contentColor?: string | null, contentLineHeight?: number | null, contentMargin?: string | null, childId: number } | null }> | null, componentMobileStyle?: { id: number, height?: string | null, padding?: string | null, grid?: number | null, gap?: string | null, background?: string | null, backgroundType?: BackgroundType | null, componentId: number } | null, componentStyle?: { id: number, height?: string | null, padding?: string | null, grid?: number | null, gap?: string | null, background?: string | null, backgroundType?: BackgroundType | null, componentId: number } | null, contentStyle?: { id: number, margin?: string | null, mobileMargin?: string | null, size?: string | null, mobileSize?: string | null, lineHeight?: number | null, mobileLineHeight?: number | null, color?: string | null, mobileColor?: string | null, componentId: number } | null, inquiryStyle?: { id: number, padding?: string | null, gap?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, backgroundColor?: string | null, buttonWidth?: string | null, buttonHeight?: string | null, buttonTextSize?: string | null, buttonTextColor?: string | null, buttonColor?: string | null, buttonRadius?: string | null, componentId: number } | null, mobileChildren?: Array<{ id: number, title?: string | null, content?: string | null, isDelete: boolean, componentId: number, mobileChildStyle?: { id: number, width?: string | null, height?: string | null, margin?: string | null, padding?: string | null, background?: string | null, backgroundType?: BackgroundType | null, border?: string | null, borderRadius?: string | null, titleSize?: string | null, titleColor?: string | null, titleLineHeight?: number | null, titleMargin?: string | null, contentSize?: string | null, contentColor?: string | null, contentLineHeight?: number | null, contentMargin?: string | null, mobileChildId: number } | null }> | null, mobileInquiryStyle?: { id: number, padding?: string | null, gap?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, backgroundColor?: string | null, buttonWidth?: string | null, buttonHeight?: string | null, buttonTextSize?: string | null, buttonTextColor?: string | null, buttonColor?: string | null, buttonRadius?: string | null, componentId: number } | null, titleStyle?: { id: number, margin?: string | null, mobileMargin?: string | null, size?: string | null, mobileSize?: string | null, lineHeight?: number | null, mobileLineHeight?: number | null, color?: string | null, mobileColor?: string | null, componentId: number } | null }> | null, header?: { id: number, logo?: string | null, logoSize?: string | null, height?: string | null, padding?: string | null, gap?: string | null, backgroundColor?: string | null, textSize?: string | null, textColor?: string | null, siteId: number } | null, mobileHeader?: { id: number, logo?: string | null, logoSize?: string | null, button?: string | null, buttonSize?: string | null, height?: string | null, padding?: string | null, menuPadding?: string | null, backgroundColor?: string | null, menuBackgroundColor?: string | null, textSize?: string | null, textColor?: string | null, siteId: number } | null, footer?: { id: number, footerType: number, logo?: string | null, logoSize?: string | null, contentTop?: string | null, helpCenter?: string | null, terms?: string | null, contentBottom?: string | null, backgroundColor?: string | null, paddingTop?: string | null, paddingBottom?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, siteId: number } | null, mobileFooter?: { id: number, footerType: number, logo?: string | null, logoSize?: string | null, contentTop?: string | null, helpCenter?: string | null, terms?: string | null, contentBottom?: string | null, backgroundColor?: string | null, paddingTop?: string | null, paddingBottom?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, siteId: number } | null } };
+export type FindOneSiteByDomainQuery = { findOneSiteByDomain: { id: number, domain: string, name: string, email: string, components?: Array<{ componentType: ComponentType, content?: string | null, id: number, isDelete: boolean, mobileContent?: string | null, mobileTitle?: string | null, name: string, siteId: number, title?: string | null, children?: Array<{ id: number, title?: string | null, content?: string | null, isDelete: boolean, componentId: number, childStyle?: { id: number, width?: string | null, height?: string | null, margin?: string | null, padding?: string | null, background?: string | null, backgroundType?: BackgroundType | null, border?: string | null, borderRadius?: string | null, titleSize?: string | null, titleColor?: string | null, titleLineHeight?: number | null, titleMargin?: string | null, contentSize?: string | null, contentColor?: string | null, contentLineHeight?: number | null, contentMargin?: string | null, childId: number } | null }> | null, componentMobileStyle?: { id: number, height?: string | null, padding?: string | null, grid?: number | null, gap?: string | null, background?: string | null, backgroundType?: BackgroundType | null, componentId: number } | null, componentStyle?: { id: number, height?: string | null, padding?: string | null, grid?: number | null, gap?: string | null, background?: string | null, backgroundType?: BackgroundType | null, componentId: number } | null, contentStyle?: { id: number, margin?: string | null, mobileMargin?: string | null, size?: string | null, mobileSize?: string | null, lineHeight?: number | null, mobileLineHeight?: number | null, color?: string | null, mobileColor?: string | null, componentId: number } | null, inquiryStyle?: { id: number, padding?: string | null, gap?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, backgroundColor?: string | null, buttonWidth?: string | null, buttonHeight?: string | null, buttonTextSize?: string | null, buttonTextColor?: string | null, buttonColor?: string | null, buttonRadius?: string | null, componentId: number } | null, mobileChildren?: Array<{ id: number, title?: string | null, content?: string | null, isDelete: boolean, componentId: number, mobileChildStyle?: { id: number, width?: string | null, height?: string | null, margin?: string | null, padding?: string | null, background?: string | null, backgroundType?: BackgroundType | null, border?: string | null, borderRadius?: string | null, titleSize?: string | null, titleColor?: string | null, titleLineHeight?: number | null, titleMargin?: string | null, contentSize?: string | null, contentColor?: string | null, contentLineHeight?: number | null, contentMargin?: string | null, mobileChildId: number } | null }> | null, mobileInquiryStyle?: { id: number, padding?: string | null, gap?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, backgroundColor?: string | null, buttonWidth?: string | null, buttonHeight?: string | null, buttonTextSize?: string | null, buttonTextColor?: string | null, buttonColor?: string | null, buttonRadius?: string | null, componentId: number } | null, titleStyle?: { id: number, margin?: string | null, mobileMargin?: string | null, size?: string | null, mobileSize?: string | null, lineHeight?: number | null, mobileLineHeight?: number | null, color?: string | null, mobileColor?: string | null, componentId: number } | null }> | null, header?: { id: number, logo?: string | null, logoSize?: string | null, height?: string | null, padding?: string | null, gap?: string | null, backgroundColor?: string | null, textSize?: string | null, textColor?: string | null, siteId: number } | null, mobileHeader?: { id: number, logo?: string | null, logoSize?: string | null, button?: string | null, buttonSize?: string | null, height?: string | null, padding?: string | null, menuPadding?: string | null, backgroundColor?: string | null, menuBackgroundColor?: string | null, textSize?: string | null, textColor?: string | null, siteId: number } | null, footer?: { id: number, footerType: number, logo?: string | null, logoSize?: string | null, contentTop?: string | null, helpCenter?: string | null, terms?: string | null, contentBottom?: string | null, backgroundColor?: string | null, paddingTop?: string | null, paddingBottom?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, siteId: number } | null, mobileFooter?: { id: number, footerType: number, logo?: string | null, logoSize?: string | null, contentTop?: string | null, helpCenter?: string | null, terms?: string | null, contentBottom?: string | null, backgroundColor?: string | null, paddingTop?: string | null, paddingBottom?: string | null, textSize?: string | null, textColor?: string | null, lineHeight?: number | null, siteId: number } | null } };
 
 
-export const QueryDocument = gql`
-    query Query($domain: String!) {
+export const SendInquiryEmailDocument = gql`
+    mutation SendInquiryEmail($id: Int!, $userEmail: String!, $phoneNumber: String!, $content: String!) {
+  SendInquiryEmail(
+    id: $id
+    userEmail: $userEmail
+    phoneNumber: $phoneNumber
+    content: $content
+  )
+}
+    `;
+export type SendInquiryEmailMutationFn = Apollo.MutationFunction<SendInquiryEmailMutation, SendInquiryEmailMutationVariables>;
+
+/**
+ * __useSendInquiryEmailMutation__
+ *
+ * To run a mutation, you first call `useSendInquiryEmailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendInquiryEmailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendInquiryEmailMutation, { data, loading, error }] = useSendInquiryEmailMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      userEmail: // value for 'userEmail'
+ *      phoneNumber: // value for 'phoneNumber'
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useSendInquiryEmailMutation(baseOptions?: Apollo.MutationHookOptions<SendInquiryEmailMutation, SendInquiryEmailMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SendInquiryEmailMutation, SendInquiryEmailMutationVariables>(SendInquiryEmailDocument, options);
+      }
+export type SendInquiryEmailMutationHookResult = ReturnType<typeof useSendInquiryEmailMutation>;
+export type SendInquiryEmailMutationResult = Apollo.MutationResult<SendInquiryEmailMutation>;
+export type SendInquiryEmailMutationOptions = Apollo.BaseMutationOptions<SendInquiryEmailMutation, SendInquiryEmailMutationVariables>;
+export const FindOneSiteByDomainDocument = gql`
+    query FindOneSiteByDomain($domain: String!) {
   findOneSiteByDomain(domain: $domain) {
     id
     domain
@@ -1218,34 +1276,34 @@ export const QueryDocument = gql`
     `;
 
 /**
- * __useQueryQuery__
+ * __useFindOneSiteByDomainQuery__
  *
- * To run a query within a React component, call `useQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFindOneSiteByDomainQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindOneSiteByDomainQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useQueryQuery({
+ * const { data, loading, error } = useFindOneSiteByDomainQuery({
  *   variables: {
  *      domain: // value for 'domain'
  *   },
  * });
  */
-export function useQueryQuery(baseOptions: Apollo.QueryHookOptions<QueryQuery, QueryQueryVariables> & ({ variables: QueryQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useFindOneSiteByDomainQuery(baseOptions: Apollo.QueryHookOptions<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables> & ({ variables: FindOneSiteByDomainQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<QueryQuery, QueryQueryVariables>(QueryDocument, options);
+        return Apollo.useQuery<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>(FindOneSiteByDomainDocument, options);
       }
-export function useQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QueryQuery, QueryQueryVariables>) {
+export function useFindOneSiteByDomainLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<QueryQuery, QueryQueryVariables>(QueryDocument, options);
+          return Apollo.useLazyQuery<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>(FindOneSiteByDomainDocument, options);
         }
-export function useQuerySuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<QueryQuery, QueryQueryVariables>) {
+export function useFindOneSiteByDomainSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<QueryQuery, QueryQueryVariables>(QueryDocument, options);
+          return Apollo.useSuspenseQuery<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>(FindOneSiteByDomainDocument, options);
         }
-export type QueryQueryHookResult = ReturnType<typeof useQueryQuery>;
-export type QueryLazyQueryHookResult = ReturnType<typeof useQueryLazyQuery>;
-export type QuerySuspenseQueryHookResult = ReturnType<typeof useQuerySuspenseQuery>;
-export type QueryQueryResult = Apollo.QueryResult<QueryQuery, QueryQueryVariables>;
+export type FindOneSiteByDomainQueryHookResult = ReturnType<typeof useFindOneSiteByDomainQuery>;
+export type FindOneSiteByDomainLazyQueryHookResult = ReturnType<typeof useFindOneSiteByDomainLazyQuery>;
+export type FindOneSiteByDomainSuspenseQueryHookResult = ReturnType<typeof useFindOneSiteByDomainSuspenseQuery>;
+export type FindOneSiteByDomainQueryResult = Apollo.QueryResult<FindOneSiteByDomainQuery, FindOneSiteByDomainQueryVariables>;

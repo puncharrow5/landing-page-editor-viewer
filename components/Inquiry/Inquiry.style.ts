@@ -53,7 +53,7 @@ export const Form = styled.div<{ $inquiryStyle?: InquiryStyleEntity }>`
   gap: ${({ $inquiryStyle }) => $inquiryStyle?.gap ?? "0px"};
 `;
 
-export const Button = styled.div<{ $inquiryStyle?: InquiryStyleEntity }>`
+export const Button = styled.button<{ $inquiryStyle?: InquiryStyleEntity }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,4 +65,5 @@ export const Button = styled.div<{ $inquiryStyle?: InquiryStyleEntity }>`
   font-weight: bold;
   background-color: ${({ $inquiryStyle }) => $inquiryStyle?.buttonColor ?? "#fff"};
   border-radius: ${({ $inquiryStyle }) => $inquiryStyle?.buttonRadius ?? "#fff"};
+  cursor: pointer;
 `;

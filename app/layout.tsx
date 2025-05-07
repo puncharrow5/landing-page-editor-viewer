@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import { getClient } from "@/config/client";
+import { ToastContainer } from "react-toastify";
+import ApolloWrapper from "./apollo-wrapper";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,9 +18,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const client = getClient();
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ToastContainer />
+        <ApolloWrapper>{children}</ApolloWrapper>
+      </body>
     </html>
   );
 }

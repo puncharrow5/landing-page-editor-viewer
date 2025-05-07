@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const FIND_ONE_SITE_BY_DOMAIN = gql`
-  query Query($domain: String!) {
+  query FindOneSiteByDomain($domain: String!) {
     findOneSiteByDomain(domain: $domain) {
       id
       domain
