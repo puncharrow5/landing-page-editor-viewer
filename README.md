@@ -80,6 +80,8 @@
 |----------|
 ![Image](https://github.com/user-attachments/assets/d88ec5d9-23bd-4461-8695-721954149ee2)
 
+<br />
+
 ### [문의]
 - 문의 이메일을 전송할 수 있는 기능입니다.
 - 유효성 검사
